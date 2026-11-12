@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0f1c24;
+  --ink-soft: #243642;
+  --muted: #5b6e7a;
+  --paper: #eef4f7;
+  --fog: #d7e4eb;
+  --line: rgba(15, 28, 36, 0.12);
+  --accent: #0f8f7b;
+  --accent-deep: #0b6b5c;
+  --accent-glow: rgba(15, 143, 123, 0.22);
+  --warn: #c45c26;
+  --good: #12805c;
+  --card: rgba(255, 255, 255, 0.72);
+  --shadow: 0 18px 50px rgba(15, 28, 36, 0.12);
+  --font-display: var(--font-syne), "Arial Narrow", sans-serif;
+  --font-body: var(--font-manrope), "Segoe UI", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--font-body);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(15, 143, 123, 0.18), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(36, 90, 120, 0.16), transparent 50%),
+    linear-gradient(165deg, #f5fafc 0%, #e7eef3 48%, #dfe9ef 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(15, 28, 36, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 28, 36, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at 50% 20%, black, transparent 75%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(15, 143, 123, 0.25);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.rise {
+  animation: rise-in 0.55s ease both;
+}
+
+.rise-delay-1 {
+  animation-delay: 0.08s;
+}
+
+.rise-delay-2 {
+  animation-delay: 0.16s;
+}
+
+.rise-delay-3 {
+  animation-delay: 0.24s;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(15, 28, 36, 0.06),
+    rgba(15, 28, 36, 0.12),
+    rgba(15, 28, 36, 0.06)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+  border-radius: 12px;
+}
